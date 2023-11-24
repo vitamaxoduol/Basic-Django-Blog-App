@@ -7,16 +7,15 @@ Create a New Project (if not already created):
 ```
 django-admin startproject mysite
 ```
-`
+```
 cd mysite
-
-`
+```
 Create a New App (e.g., 'blog'):
 
 ``
 python manage.py startapp blog
-
 ``
+
 Include the App in Your Project:
 
 Open mysite/settings.py.
@@ -42,36 +41,37 @@ Run python manage.py migrate to apply migrations to the database.
 
 3. Creating Views and URL Routing
 Define a View in views.py of the blog app:
-``
+```
 from django.shortcuts import render
 from .models import BlogPost
 
 def blog_list(request):
     posts = BlogPost.objects.all().order_by('published_date')
     return render(request, 'blog/blog_list.html', {'posts': posts})
-``
+```
 Set up URL Routing:
 
 Create a urls.py in the blog app directory.
 
 Define the URL pattern for the view:
-``
+```
 from django.urls import path
 from . import views
 
 urlpatterns = [
     path('', views.blog_list, name='blog_list'),
 ]
-``
+```
 Include blog URLs in the main URLconf (mysite/urls.py):
-``
+```
 from django.urls import include, path
 
 urlpatterns = [
     path('blog/', include('blog.urls')),
     # other paths...
 ]
-``
+```
+
 4. Designing the Template
 Create a Template File:
 
@@ -79,9 +79,7 @@ Create a directory named templates within the blog app.
 Inside templates, create another directory named blog.
 Create a file blog_list.html inside blog/templates/blog/.
 Design the Template (blog_list.html):
-``````
-html
-Copy code
+````
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +98,8 @@ Copy code
     </ul>
 </body>
 </html>
-``````
+````
+
 5. Registering with the Admin Interface
 Register the Model in admin.py of the blog app:
 
