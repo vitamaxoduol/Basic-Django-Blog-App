@@ -106,9 +106,9 @@ Create a Superuser and Test the Admin Interface:
 
 Run python manage.py createsuperuser and follow the prompts.
 Run the server python manage.py runserver.
-Go to http://127.0.0.1:8000/admin, log in, and test adding, editing, and deleting blog posts.
+Go to `http://127.0.0.1:8000/admin`, log in, and test adding, editing, and deleting blog posts.
 Running the Application
 Start the Django development server:
 
 python manage.py runserver
-Access the blog list view by navigating to http://127.0.0.1:8000/blog/.
+Access the blog list view by navigating to `http://127.0.0.1:8000/blog/.`
