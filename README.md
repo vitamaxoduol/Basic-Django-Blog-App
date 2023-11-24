@@ -1,34 +1,41 @@
 ## Basic django blog application.
 
-## Setting up the Django Project and App
+Setting up the Django Project and App
 First, ensure Django is installed and set up a new Django project and app:
 
 Create a New Project (if not already created):
+```
+django-admin startproject mysite
+```
+`
+cd mysite
 
-`django-admin startproject mysite`
-
-`cd mysite`
-
+`
 Create a New App (e.g., 'blog'):
 
-`python manage.py startapp blog`
+``
+python manage.py startapp blog
+
+``
 Include the App in Your Project:
 
 Open mysite/settings.py.
 Add 'blog' to the INSTALLED_APPS list.
+
 2. Defining the Model
 In the blog app, modify the models.py file to define the BlogPost model:
 
-`from django.db import models`
+```
+from django.db import models
 
-`class BlogPost(models.Model):`
-    `title = models.CharField(max_length=200)`
-    `content = models.TextField()`
-    `published_date = models.DateTimeField``(auto_now_add=True)`
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    published_date = models.DateTimeField(auto_now_add=True)
 
-    `def __str__(self):`
-        `return self.title`
-
+    def __str__(self):
+        return self.title
+        ```
 Migrate the Model:
 Run python manage.py makemigrations blog to create migrations for the changes.
 Run python manage.py migrate to apply migrations to the database.
@@ -57,13 +64,14 @@ urlpatterns = [
 ]
 ``
 Include blog URLs in the main URLconf (mysite/urls.py):
-
+``
 from django.urls import include, path
 
 urlpatterns = [
     path('blog/', include('blog.urls')),
     # other paths...
 ]
+``
 4. Designing the Template
 Create a Template File:
 
@@ -111,4 +119,4 @@ Running the Application
 Start the Django development server:
 
 python manage.py runserver
-Access the blog list view by navigating to `http://127.0.0.1:8000/blog/.`
+Access the blog list view by navigating to ` http://127.0.0.1:8000/blog/`.
