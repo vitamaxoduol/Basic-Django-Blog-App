@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import BlogPost
 from .forms import BlogPostForm
 from django.urls import reverse_lazy
+from rest_framework import viewsets
+from .serializers import BlogPostSerializer
 
 
 class BlogPostListView(ListView):
@@ -17,20 +20,24 @@ class BlogPostDetailView(DetailView):
     model = BlogPost
     template_name = 'blogpost_detail.html'
     
-class BlogPostCreateView(CreateView):
+class BlogPostCreateView(LoginRequiredMixin, CreateView):
     model = BlogPost
     form_class = BlogPostForm
     template_name = 'blogpost_create.html'
     success_url = reverse_lazy('blogpost_list')
     
-class BlogPostUpdateView(UpdateView):
+class BlogPostUpdateView(LoginRequiredMixin, UpdateView):
     model =  BlogPost
     form_class = BlogPostForm
     template_name = 'blogpost_update.html'
     success_url = reverse_lazy('blogpost_list')
     
-class BlogPostDeleteView(DeleteView):
-    models = BlogPost
+class BlogPostDeleteView(LoginRequiredMixin, DeleteView):
+    model = BlogPost
     template_name = "blogpost_delete.html"
     success_url = reverse_lazy('blogpost_list')
+    
+class BlogPostViewSet(viewsets.ModelsViewSet):
+    queryset = BlogPost.objects.all()
+    serializers_class = BlogPostSerializer
     
